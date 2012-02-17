@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="output/oracle/src/main/java"/>
+	<classpathentry kind="src" path="output/oracle/src/test/java"/>
+	<classpathentry kind="src" path="output/mysql/src/main/java"/>
+	<classpathentry kind="src" path="output/mysql/src/test/java"/>
+	<classpathentry kind="src" path="output/hsqldb/src/main/java"/>
+	<classpathentry kind="src" path="output/hsqldb/src/test/java"/>
+	<classpathentry kind="src" path="output/derby/src/main/java"/>
+	<classpathentry kind="src" path="output/derby/src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jOOQ"/>
+	<classpathentry kind="lib" path="/jOOQ-test/lib/junit.jar"/>
+	<classpathentry kind="output" path="target"/>
+</classpath>

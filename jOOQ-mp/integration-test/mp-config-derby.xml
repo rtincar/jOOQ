@@ -1,0 +1,56 @@
+<!DOCTYPE root>
+<generator-config>
+	<configuration>
+		<conventions>
+			<target-convention type="enable-updatable-code-feature" />
+		</conventions>
+		<model name="test" version="2.0.5" package-root="org.jooq.mp.derby">
+			<data-model>
+			    <driver name="derby" version="10.7" groupId="derby"
+					artifactId="derby"></driver>
+			    <fileSource name="jooq" dir="c:/MinuteProject/data">
+			    </fileSource>
+			    <dataSource>
+					<driverClassName>org.apache.derby.jdbc.ClientDriver</driverClassName>
+					<url>jdbc:derby://localhost:1527/test;create=true</url>
+					<username>TEST</username>
+					<password>TEST</password>
+				</dataSource>
+				<schema>TEST</schema>
+				<primaryKeyPolicy oneGlobal="true" oneForEachTable="false">
+					<primaryKeyPolicyPattern prefix="" suffix="" name="sequencePattern" sequenceName="hibernate_sequence"></primaryKeyPolicyPattern>
+				</primaryKeyPolicy>
+			</data-model>
+			<business-model>
+				<generation-condition>
+					<condition type="exclude" startsWith="DUAL"></condition>
+					<condition type="exclude" startsWith="ID_GEN"></condition>
+				</generation-condition>
+				<business-package default="pet">
+					<condition type="package" startsWith="PRODUCT" result="product"></condition>
+					<condition type="package" startsWith="ITEM" result="product"></condition>
+				</business-package>
+				<enrichment>
+				   <conventions>
+				      <entity-naming-convention type="apply-strip-table-name-prefix" pattern-to-strip="SYS,FIN"/>
+				      <column-naming-convention type="apply-fix-primary-key-column-name-when-no-ambiguity" default-value="ID"/>
+				      <reference-naming-convention type="apply-referenced-alias-when-no-ambiguity" is-to-plurialize="true"></reference-naming-convention>
+				   </conventions>
+				</enrichment>
+			</business-model>
+		</model>
+		<targets>
+			<target refname="JOOQ"
+			   name="JOOQ"
+			   fileName="mp-template-config-JOOQ.xml"
+			   outputdir-root="../output/derby"
+			   templatedir-root="../template/framework/jooq">
+               <property name="jooq-version" value="2.0.4"></property>
+			</target>
+			<target refname="LIB"
+			   fileName="mp-template-config-bsla-LIB-features.xml"
+			   templatedir-root="../template/framework/bsla">
+			</target>
+		</targets>
+	</configuration>
+</generator-config>

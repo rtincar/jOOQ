@@ -1,0 +1,91 @@
+#exposeEJBDomainObjectSpecific()
+#exposeJSFEntitySpecific()
+package $packageName;
+
+$!updatedAreaImport
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import $importDomainObjectUML;
+import $EJBDaoImplImport;
+
+/**
+ *
+ * <p>Title: ${className}</p>
+ *
+ * <p>Description: remote interface for ${className} service </p>
+ *
+ */
+@Named(value = "$entityControllerJSFVariable")
+@Default
+@RequestScoped
+public class ${className} {
+    
+	@Inject 
+    private $EJBDaoImplClass $EJBDaoImplVariable;
+	
+	private $tableClassName $tableVariableName = new $tableClassName();
+	private $tableClassName selected$tableClassName;
+	
+    public List<$tableClassName> findAll () {
+		return ${EJBDaoImplVariable}.findAll($tableVariableName);
+	}
+
+#if ($hasOnlyOnePrimaryKey)
+	public $tableClassName findById ($primaryKeyFullType $primaryKeyVariable) {
+		return ${EJBDaoImplVariable}.findById($primaryKeyVariable);
+	}
+
+#end
+#if ($hasSemanticReference)
+	public $tableClassName findBySemanticReference ($primaryKeyFullType $primaryKeyVariable) {
+		return ${EJBDaoImplVariable}.findBySemanticReference (${tableClassName}.class, $primaryKeyVariable);
+	}
+	
+#end
+	public String create () {
+		${EJBDaoImplVariable}.create($tableVariableName);
+		return "success";
+	}
+	
+	public $tableClassName update () {
+		return ${EJBDaoImplVariable}.update (${tableVariableName});
+	}
+	
+	public void delete ($tableClassName ${tableVariableName}) {
+		${EJBDaoImplVariable}.delete (${tableVariableName});
+	}
+
+	public void delete () {
+		${EJBDaoImplVariable}.delete (${tableVariableName});
+	}
+	
+	public $tableClassName get$tableClassName() {
+	    return $tableVariableName;
+	}
+	
+	public void set$tableClassName ($tableClassName $tableVariableName) {
+	    this.$tableVariableName = $tableVariableName;
+	}	
+	
+	public $tableClassName getSelected$tableClassName() {
+	    return selected$tableClassName;
+	}
+	
+	public void setSelected$tableClassName ($tableClassName $tableVariableName) {
+	    this.selected$tableClassName = $tableVariableName;
+	}		
+	
+	//TODO put in upperclass
+    public String displayInput () {
+		return "success";
+	}	
+
+	$!updatedAreaImplementation
+}
